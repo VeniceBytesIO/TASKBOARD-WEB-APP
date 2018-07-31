@@ -14,7 +14,9 @@ class AuthController
                 //var_dump($resp);
                 if ($resp['user'] === $_POST['frmLoginUser'] &&
                     $resp['password'] === $_POST['frmLoginPassword']
-                ) {
+                ) {;
+                    session_start();
+                    $_SESSION['validateLogin'] = true;
                     return 'success';
                 }else{
                     $attempt = $this->getAttemptController($_POST['frmLoginUser']);

@@ -1,4 +1,8 @@
-<?php 
+<?php
+session_start();
+if (!$_SESSION['validateLogin']) {
+    header('Location:login');
+}
 require_once "navbar.php";
 require_once "sidebar.php"; 
 ?>
