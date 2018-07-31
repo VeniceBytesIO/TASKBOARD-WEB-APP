@@ -1,13 +1,12 @@
 <?php 
     $auth = new AuthController();
-    $verify = $auth->authUserController();
-    $regularNotification = false;
-    if ($verify=='success') {
-        header('Location:dashboard');
-    }elseif($verify=='error'){
-        $regularNotification = true;
-    }elseif($verify=='resetPassword'){
-        header('Location:?action=securityQuestion&user='.$_POST['frmLoginUser']);
+    $securityQuestion = $auth->getSecurityQuestionController();
+    $validateAnswer = $auth->evaluateSecurityAnswerController();
+    $alertNotification = false;
+    if ($validateAnswer=='success') {
+        header('Location:resetPassword');
+    }else{
+        $alertNotification = true;
     }
 ?>
 <!-- THIS BODY TAG DOES NOT CLOSE BECAUSE ITS HARDCODED TO GET ALL WIDTH AND HEIGHT JUST IN THESE PAGE OF THAT COLOR  -->
@@ -21,21 +20,18 @@
             <div class="card">
                 <div class="body">
                     <form id="sign_in" method="POST">
-                        <div class="msg">Logueate para iniciar sesión.</div>
+                        <div class="msg">Answer your security question.</div>
                         <div class="input-group">
                             <span class="input-group-addon">
-                                <i class="material-icons">person</i>
+                                <i class="material-icons">help</i>
                             </span>
                             <div class="form-line">
-                                <input type="text" class="form-control" name="frmLoginUser" placeholder="Usuario" required autofocus>
+                            <input type="text" class="form-control" name="frmSecurityQuestionQuestion" value="<?php echo $securityQuestion; ?>" readonly>
                             </div>
                         </div>
                         <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="material-icons">lock</i>
-                            </span>
                             <div class="form-line">
-                                <input type="password" class="form-control" name="frmLoginPassword" placeholder="Password" required>
+                                <input type="password" class="form-control" name="frmSecurityQuestionAnswer" placeholder="Answer" required autofocus>
                             </div>
                         </div>
                         <div class="row">
@@ -44,10 +40,10 @@
                             </div>
                         </div>
                         <?php 
-                            if ($regularNotification) {
+                            if ($alertNotification) {
                                 echo '<div class="alert bg-red alert-dismissible" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                        User or Password does not match!
+                                        Answer is incorrect, please try again!
                                     </div>';
                             }
                         ?>

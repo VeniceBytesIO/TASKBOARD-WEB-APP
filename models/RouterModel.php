@@ -5,7 +5,9 @@ class RouterModel
 		if ($enlace == "dashboard" ||
 			$enlace == "employees" ||
 			$enlace == "insurance" ||
-			$enlace == "addInsurance") {
+			$enlace == "addInsurance"||
+			$enlace == "securityQuestion"||
+			$enlace == "resetPassword") {
 			$url = 'views/modules/'.$enlace.'.php';
 		}else if($enlace == "index"){
 			$url = 'views/modules/login.php';

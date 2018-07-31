@@ -7,7 +7,7 @@
     }elseif($verify=='error'){
         $regularNotification = true;
     }elseif($verify=='resetPassword'){
-        header('Location:?action=securityQuestion&user='.$_POST['frmLoginUser']);
+        header('Location:resetPassword');
     }
 ?>
 <!-- THIS BODY TAG DOES NOT CLOSE BECAUSE ITS HARDCODED TO GET ALL WIDTH AND HEIGHT JUST IN THESE PAGE OF THAT COLOR  -->
@@ -21,13 +21,13 @@
             <div class="card">
                 <div class="body">
                     <form id="sign_in" method="POST">
-                        <div class="msg">Logueate para iniciar sesión.</div>
+                        <div class="msg">Reset your password.</div>
                         <div class="input-group">
                             <span class="input-group-addon">
                                 <i class="material-icons">person</i>
                             </span>
                             <div class="form-line">
-                                <input type="text" class="form-control" name="frmLoginUser" placeholder="Usuario" required autofocus>
+                                <input type="text" class="form-control" name="frmResetPasswordUser" placeholder="Usuario" required autofocus>
                             </div>
                         </div>
                         <div class="input-group">
@@ -35,7 +35,15 @@
                                 <i class="material-icons">lock</i>
                             </span>
                             <div class="form-line">
-                                <input type="password" class="form-control" name="frmLoginPassword" placeholder="Password" required>
+                                <input type="password" class="form-control" name="frmResetPasswordPassword" placeholder="Password" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">lock</i>
+                            </span>
+                            <div class="form-line">
+                                <input type="password" class="form-control" name="frmResetPasswordConfirmPassword" placeholder="Password" required>
                             </div>
                         </div>
                         <div class="row">
