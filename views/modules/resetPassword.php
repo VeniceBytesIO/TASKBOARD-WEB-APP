@@ -38,14 +38,6 @@
                                 <button class="btn btn-block bg-pink waves-effect" type="submit">INGRESAR</button>
                             </div>
                         </div>
-                        <?php 
-                            
-                        ?>
-                        <div class="row m-t-15 m-b--20">
-                            <div class="col-xs-12 align-center">
-                                <a href="forgot-password.html">Olvidaste tu contraseña?</a>
-                            </div>
-                        </div>
                     </form>
                 </div>
             </div>

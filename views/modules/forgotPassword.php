@@ -1,9 +1,8 @@
 <?php 
     $auth = new AuthController();
-    $securityQuestion = $auth->getSecurityQuestionController();
-    $validateAnswer = $auth->evaluateSecurityAnswerController();
-    if ($validateAnswer=='success') {
-        header('Location:?action=resetPassword&user='.$_GET['user']);
+    $redirect = $auth->validateForgotPasswordController();
+    if (!empty($redirect)) {
+        header('Location:index.php?action=securityQuestion&user='.$_POST['frmForgotPasswordUser']);
     }
 ?>
 <!-- THIS BODY TAG DOES NOT CLOSE BECAUSE ITS HARDCODED TO GET ALL WIDTH AND HEIGHT JUST IN THESE PAGE OF THAT COLOR  -->
@@ -20,15 +19,10 @@
                         <div class="msg">Answer your security question.</div>
                         <div class="input-group">
                             <span class="input-group-addon">
-                                <i class="material-icons">help</i>
+                                <i class="material-icons">person</i>
                             </span>
                             <div class="form-line">
-                            <input type="text" class="form-control" name="frmSecurityQuestionQuestion" value="<?php echo $securityQuestion; ?>" readonly>
-                            </div>
-                        </div>
-                        <div class="input-group">
-                            <div class="form-line">
-                                <input type="password" class="form-control" name="frmSecurityQuestionAnswer" placeholder="Answer" required autofocus>
+                            <input type="text" class="form-control" name="frmForgotPasswordUser" value="" autofocus>
                             </div>
                         </div>
                         <div class="row">
@@ -36,6 +30,8 @@
                                 <button class="btn btn-block bg-pink waves-effect" type="submit">INGRESAR</button>
                             </div>
                         </div>
+                        <?php 
+                        ?>
                     </form>
                 </div>
             </div>

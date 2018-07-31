@@ -53,7 +53,7 @@
                         ?>
                         <div class="row m-t-15 m-b--20">
                             <div class="col-xs-12 align-center">
-                                <a href="forgot-password.html">Olvidaste tu contraseña?</a>
+                                <a href="forgotPassword">Olvidaste tu contraseña?</a>
                             </div>
                         </div>
                     </form>

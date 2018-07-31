@@ -89,5 +89,14 @@ class AuthController
             }
         }
     }
+    //validate the forgotPassword form to redirecto to resetPassword form
+    public function validateForgotPasswordController()
+    {
+        if (isset($_POST['frmForgotPasswordUser']) && !empty($_POST['frmForgotPasswordUser'])) {
+            $data = $_POST['frmForgotPasswordUser'];
+            //var_dump($data);
+            return $data;
+        }
+    }
 }
 ?>

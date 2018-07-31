@@ -68,4 +68,5 @@ class AuthModel extends Connection
             return 'error';
         }
     }
+    
 }
