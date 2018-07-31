@@ -4,7 +4,7 @@
     $validateAnswer = $auth->evaluateSecurityAnswerController();
     $alertNotification = false;
     if ($validateAnswer=='success') {
-        header('Location:resetPassword');
+        header('Location:?action=resetPassword&user='.$_GET['user']);
     }else{
         $alertNotification = true;
     }

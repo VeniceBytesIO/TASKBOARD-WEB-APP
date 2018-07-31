@@ -55,4 +55,17 @@ class AuthModel extends Connection
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    //update the password of the user
+    public function updatePasswordModel($table, $data)
+    {
+        $sql = "UPDATE $table SET $table.password=:password WHERE $table.user=:user";
+        $stmt = Connection::connect()->prepare($sql);
+        $stmt->bindParam(':user', $data['user'], PDO::PARAM_STR);
+        $stmt->bindParam(':password', $data['password'], PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return 'success';
+        }else{
+            return 'error';
+        }
+    }
 }

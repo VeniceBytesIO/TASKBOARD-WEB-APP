@@ -73,5 +73,21 @@ class AuthController
             }
         }
     }
+    //update password of the user
+    //update the password of the user
+    public function updatePasswordController()
+    {
+        if (isset($_POST['frmResetPasswordPassword']) && !empty($_POST['frmResetPasswordPassword']) &&
+            isset($_POST['frmResetPasswordConfirmPassword']) && !empty($_POST['frmResetPasswordConfirmPassword']) &&
+            isset($_GET['user']) && !empty($_GET['user'])
+        ) {
+            if ($_POST['frmResetPasswordPassword']==$_POST['frmResetPasswordConfirmPassword']) {
+                $data = array('user'=>$_GET['user'], 
+                            'password'=>$_POST['frmResetPasswordPassword']);
+                $resp = AuthModel::updatePasswordModel('users', $data);
+                return $resp;
+            }
+        }
+    }
 }
 ?>
