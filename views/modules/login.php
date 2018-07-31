@@ -1,13 +1,17 @@
 <?php 
     $auth = new AuthController();
     $verify = $auth->authUserController();
-    $regularNotification = false;
+    $alert = false;
     if ($verify=='success') {
         header('Location:dashboard');
-    }elseif($verify=='error'){
-        $regularNotification = true;
-    }elseif($verify=='resetPassword'){
-        header('Location:?action=securityQuestion&user='.$_POST['frmLoginUser']);
+    }elseif($verify==='error'){
+        $alert = true;
+        $alertMsj = 'User or Password does not match!';
+    }elseif($verify==='resetPassword'){
+        header('Location:index.php?action=securityQuestion&user='.$_POST['frmLoginUser']);
+    }elseif($verify==='emptyFields'){
+        $alert = true;
+        $alertMsj = 'All fields are required!';
     }
 ?>
 <!-- THIS BODY TAG DOES NOT CLOSE BECAUSE ITS HARDCODED TO GET ALL WIDTH AND HEIGHT JUST IN THESE PAGE OF THAT COLOR  -->
@@ -40,20 +44,20 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-4 col-xs-offset-4">
-                                <button class="btn btn-block bg-pink waves-effect" type="submit">INGRESAR</button>
+                                <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
                             </div>
                         </div>
                         <?php 
-                            if ($regularNotification) {
+                            if ($alert) {
                                 echo '<div class="alert bg-red alert-dismissible" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                        User or Password does not match!
+                                        '.$alertMsj.'
                                     </div>';
                             }
                         ?>
                         <div class="row m-t-15 m-b--20">
                             <div class="col-xs-12 align-center">
-                                <a href="forgotPassword">Olvidaste tu contraseña?</a>
+                                <a href="forgotPassword">Forgot your password?</a>
                             </div>
                         </div>
                     </form>

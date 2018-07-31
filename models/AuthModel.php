@@ -68,5 +68,13 @@ class AuthModel extends Connection
             return 'error';
         }
     }
-    
+    //rewiev if the user exist on forgotPassword form
+    public function validateForgotPasswordModel($table, $data)
+    {
+        $sql = "SELECT COUNT($table.user) AS total FROM $table WHERE $table.user=:user";
+        $stmt = Connection::connect()->prepare($sql);
+        $stmt->bindParam(':user', $data, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }

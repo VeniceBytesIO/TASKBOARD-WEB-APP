@@ -1,8 +1,15 @@
 <?php 
     $auth = new AuthController();
     $updatePassword = $auth->updatePasswordController();
+    $alert = false;
     if ($updatePassword=='success') {
         header('Location:login');
+    }elseif($updatePassword=='noMatch'){
+        $alert = true;
+        $alertMsj = 'Password and Confirm Password does not match';
+    }elseif($updatePassword=='emptyFields'){
+        $alert = true;
+        $alertMsj = 'All fields are required';
     }
 ?>
 <!-- THIS BODY TAG DOES NOT CLOSE BECAUSE ITS HARDCODED TO GET ALL WIDTH AND HEIGHT JUST IN THESE PAGE OF THAT COLOR  -->
@@ -34,10 +41,18 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-4 col-xs-offset-4">
-                                <button class="btn btn-block bg-pink waves-effect" type="submit">INGRESAR</button>
+                            <div class="col-xs-6 col-xs-offset-3">
+                                <button class="btn btn-block bg-pink waves-effect" type="submit">CHANGE PASSWORD</button>
                             </div>
                         </div>
+                        <?php 
+                            if ($alert) {
+                                echo '<div class="alert bg-red alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                        '.$alertMsj.'
+                                    </div>';
+                            }
+                        ?>
                     </form>
                 </div>
             </div>

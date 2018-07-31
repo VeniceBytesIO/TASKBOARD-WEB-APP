@@ -2,8 +2,15 @@
     $auth = new AuthController();
     $securityQuestion = $auth->getSecurityQuestionController();
     $validateAnswer = $auth->evaluateSecurityAnswerController();
+    $alert = false;
     if ($validateAnswer=='success') {
         header('Location:?action=resetPassword&user='.$_GET['user']);
+    }elseif ($validateAnswer=='error'){
+        $alert = true;
+        $alertMsj = 'Security Answer incorrect please try again!';
+    }elseif ($validateAnswer=='emptyFields'){
+        $alert = true;
+        $alertMsj = 'All fields are required!';
     }
 ?>
 <!-- THIS BODY TAG DOES NOT CLOSE BECAUSE ITS HARDCODED TO GET ALL WIDTH AND HEIGHT JUST IN THESE PAGE OF THAT COLOR  -->
@@ -33,9 +40,17 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-4 col-xs-offset-4">
-                                <button class="btn btn-block bg-pink waves-effect" type="submit">INGRESAR</button>
+                                <button class="btn btn-block bg-pink waves-effect" type="submit">SEND</button>
                             </div>
                         </div>
+                        <?php 
+                            if ($alert) {
+                                echo '<div class="alert bg-red alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                        '.$alertMsj.'
+                                    </div>';
+                            }
+                        ?>
                     </form>
                 </div>
             </div>

@@ -1,8 +1,17 @@
 <?php 
     $auth = new AuthController();
     $redirect = $auth->validateForgotPasswordController();
-    if (!empty($redirect)) {
-        header('Location:index.php?action=securityQuestion&user='.$_POST['frmForgotPasswordUser']);
+    $alert = false;
+    if (isset($_POST['frmForgotPasswordUser'])) {
+        if ($redirect==='emptyFields') {
+            $alert = true;
+            $alertMsj = 'All fields are required!';
+        }elseif($redirect==='error'){
+            $alert = true;
+            $alertMsj = 'User does not exist!';
+        }elseif($redirect==='success'){
+            header('Location:index.php?action=securityQuestion&user='.$_POST['frmForgotPasswordUser']);
+        }
     }
 ?>
 <!-- THIS BODY TAG DOES NOT CLOSE BECAUSE ITS HARDCODED TO GET ALL WIDTH AND HEIGHT JUST IN THESE PAGE OF THAT COLOR  -->
@@ -22,15 +31,21 @@
                                 <i class="material-icons">person</i>
                             </span>
                             <div class="form-line">
-                            <input type="text" class="form-control" name="frmForgotPasswordUser" value="" autofocus>
+                            <input type="text" class="form-control" name="frmForgotPasswordUser" value="" autofocus required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-4 col-xs-offset-4">
-                                <button class="btn btn-block bg-pink waves-effect" type="submit">INGRESAR</button>
+                                <button class="btn btn-block bg-pink waves-effect" type="submit">SEND</button>
                             </div>
                         </div>
                         <?php 
+                            if ($alert) {
+                                echo '<div class="alert bg-red alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                        '.$alertMsj.'
+                                    </div>';
+                            }
                         ?>
                     </form>
                 </div>

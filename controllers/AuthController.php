@@ -4,29 +4,33 @@ class AuthController
     //validation for login
     public function authUserController()
     {
-        if (isset($_POST['frmLoginUser']) && !empty($_POST['frmLoginUser']) &&
-            isset($_POST['frmLoginPassword']) && !empty($_POST['frmLoginPassword'])
+        if (isset($_POST['frmLoginUser']) && 
+            isset($_POST['frmLoginPassword'])
         ) {
-            $data = array('user'=>$_POST['frmLoginUser'], 
+            if (!empty($_POST['frmLoginUser']) && !empty($_POST['frmLoginPassword'])) {
+                $data = array('user'=>$_POST['frmLoginUser'], 
                         'password'=>$_POST['frmLoginPassword']);
-            $resp = AuthModel::authUserModel('users', $data);
-            //var_dump($resp);
-            if ($resp['user'] === $_POST['frmLoginUser'] &&
-                $resp['password'] === $_POST['frmLoginPassword']
-            ) {
-                return 'success';
-            }else{
-                $attempt = $this->getAttemptController($_POST['frmLoginUser']);
-                if ($attempt<2) {
-                    $updateAttempt = $attempt + 1;
-                    $this->updateAttemptController($_POST['frmLoginUser'], $updateAttempt);
-                    $advise = 'error';
-                }elseif($attempt>=2){
-                    $updateAttempt = 0;
-                    $this->updateAttemptController($_POST['frmLoginUser'], $updateAttempt);
-                    $advise = 'resetPassword';
+                $resp = AuthModel::authUserModel('users', $data);
+                //var_dump($resp);
+                if ($resp['user'] === $_POST['frmLoginUser'] &&
+                    $resp['password'] === $_POST['frmLoginPassword']
+                ) {
+                    return 'success';
+                }else{
+                    $attempt = $this->getAttemptController($_POST['frmLoginUser']);
+                    if ($attempt<2) {
+                        $updateAttempt = $attempt + 1;
+                        $this->updateAttemptController($_POST['frmLoginUser'], $updateAttempt);
+                        $advise = 'error';
+                    }elseif($attempt>=2){
+                        $updateAttempt = 0;
+                        $this->updateAttemptController($_POST['frmLoginUser'], $updateAttempt);
+                        $advise = 'resetPassword';
+                    }
+                    return $advise;
                 }
-                return $advise;
+            }else{
+                return 'emptyFields';
             }
         }
     }
@@ -58,18 +62,22 @@ class AuthController
     //evalute the security answer
     public function evaluateSecurityAnswerController()
     {
-        if (isset($_POST['frmSecurityQuestionQuestion']) && !empty($_POST['frmSecurityQuestionQuestion']) && 
-            isset($_POST['frmSecurityQuestionAnswer']) && !empty($_POST['frmSecurityQuestionAnswer']) &&
-            isset($_GET['user']) && !empty($_GET['user'])
-            ) {
-            $data = array('user'=>$_GET['user'], 
-            'securityQuestion'=>$_POST['frmSecurityQuestionQuestion']);
-            $resp = AuthModel::evaluateSecurityAnswerModel('users', $data);
-            //var_dump($resp);
-            if ($resp['security_answer']==$_POST['frmSecurityQuestionAnswer']) {
-                return 'success';
+        if (isset($_POST['frmSecurityQuestionQuestion']) &&  
+            isset($_POST['frmSecurityQuestionAnswer']))
+        {
+            if (!empty($_POST['frmSecurityQuestionQuestion'])  && 
+                !empty($_POST['frmSecurityQuestionAnswer'])) {
+                $data = array('user'=>$_GET['user'], 
+                'securityQuestion'=>$_POST['frmSecurityQuestionQuestion']);
+                $resp = AuthModel::evaluateSecurityAnswerModel('users', $data);
+                //var_dump($resp);
+                if ($resp['security_answer']==$_POST['frmSecurityQuestionAnswer']) {
+                    return 'success';
+                }else{
+                    return 'error';
+                }
             }else{
-                return 'error';
+                return 'emptyFields';
             }
         }
     }
@@ -77,26 +85,34 @@ class AuthController
     //update the password of the user
     public function updatePasswordController()
     {
-        if (isset($_POST['frmResetPasswordPassword']) && !empty($_POST['frmResetPasswordPassword']) &&
-            isset($_POST['frmResetPasswordConfirmPassword']) && !empty($_POST['frmResetPasswordConfirmPassword']) &&
-            isset($_GET['user']) && !empty($_GET['user'])
+        if (isset($_POST['frmResetPasswordPassword']) &&
+            isset($_POST['frmResetPasswordConfirmPassword'])
         ) {
-            if ($_POST['frmResetPasswordPassword']==$_POST['frmResetPasswordConfirmPassword']) {
-                $data = array('user'=>$_GET['user'], 
-                            'password'=>$_POST['frmResetPasswordPassword']);
-                $resp = AuthModel::updatePasswordModel('users', $data);
-                return $resp;
+            if (!empty($_POST['frmResetPasswordPassword']) && !empty($_POST['frmResetPasswordConfirmPassword'])) {
+                if ($_POST['frmResetPasswordPassword']==$_POST['frmResetPasswordConfirmPassword']) {
+                    $data = array('user'=>$_GET['user'], 
+                                'password'=>$_POST['frmResetPasswordPassword']);
+                    $resp = AuthModel::updatePasswordModel('users', $data);
+                    return $resp;
+                }else{
+                    return 'noMatch';
+                }
+            }else{
+                return 'emptyFields';
             }
         }
     }
     //validate the forgotPassword form to redirecto to resetPassword form
     public function validateForgotPasswordController()
     {
-        if (isset($_POST['frmForgotPasswordUser']) && !empty($_POST['frmForgotPasswordUser'])) {
+        if (!empty($_POST['frmForgotPasswordUser'])) {
             $data = $_POST['frmForgotPasswordUser'];
-            //var_dump($data);
-            return $data;
+            $resp = AuthModel::validateForgotPasswordModel('users', $data);
+            $total = (int)$resp['total'];
+            $advise = ($total>0) ? 'success' : 'error' ;
+            return $advise;
+        }else{
+            return 'emptyFields';
         }
     }
 }
-?>
