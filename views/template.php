@@ -22,14 +22,23 @@
     <!-- Animation Css -->
     <link href="views/plugins/animate-css/animate.css" rel="stylesheet" />
 
-    <!-- Morris Chart Css-->
-    <link href="views/plugins/morrisjs/morris.css" rel="stylesheet" />
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="views/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+    <!-- Wait Me Css -->
+    <link href="views/plugins/waitme/waitMe.css" rel="stylesheet" />
+
+    <!-- Bootstrap Select Css -->
+    <link href="views/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 
     <!-- Custom Css -->
     <link href="views/css/style.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="views/css/themes/all-themes.css" rel="stylesheet" />
+
+    <!-- Morris Chart Css-->
+    <link href="views/plugins/morrisjs/morris.css" rel="stylesheet" />
 
 </head>
 
@@ -62,6 +71,17 @@
     <!-- Jquery CountTo Plugin Js -->
     <script src="views/plugins/jquery-countto/jquery.countTo.js"></script>
 
+
+        <!-- Autosize Plugin Js -->
+    <script src="views/plugins/autosize/autosize.js"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="views/plugins/momentjs/moment.js"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="views/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+
     <!-- Morris Plugin Js -->
     <script src="views/plugins/raphael/raphael.min.js"></script>
     <script src="views/plugins/morrisjs/morris.js"></script>
@@ -79,12 +99,15 @@
     <!-- Sparkline Chart Plugin Js -->
     <script src="views/plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
+
+
     <!-- Custom Js -->
     <script src="views/js/admin.js"></script>
     <script src="views/js/pages/index.js"></script>
+    <script src="views/js/pages/forms/basic-form-elements.js"></script>
 
     <!-- Demo Js -->
-    <script src="../views/js/demo.js"></script>
+    <script src="views/js/demo.js"></script>
 </body>
 
 </html>
