@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-08-2018 a las 02:41:03
+-- Tiempo de generación: 02-08-2018 a las 00:36:50
 -- Versión del servidor: 10.1.29-MariaDB
 -- Versión de PHP: 7.2.0
 
@@ -40,7 +40,8 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`id_department`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Administration of App', '2018-07-30 14:43:00', '0000-00-00 00:00:00');
+(1, 'Administration of App', '2018-07-30 14:43:00', '0000-00-00 00:00:00'),
+(2, 'Operaciones', '2018-08-01 11:50:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -96,6 +97,13 @@ CREATE TABLE `employees` (
   `created_at` datetime NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `employees`
+--
+
+INSERT INTO `employees` (`id_employee`, `firstname`, `lastname`, `tbl_employees_id_department`, `dni`, `status`, `gender`, `birth_date`, `insurance_number`, `attached`, `tbl_employees_id_company`, `job`, `file_number`, `picture`, `hiring_at`, `civil_status`, `nationality`, `place_birth`, `place_create_dni`, `height_cms`, `blood_type`, `address`, `state`, `cellphone`, `phone`, `email`, `emergency_contact_name`, `emergency_contact_phone`, `emergency_contact_relationship`, `father_firstname`, `father_lastname`, `father_phone`, `father_attached`, `mother_firstname`, `mother_lastname`, `mother_phone`, `mother_attached`, `couple_firstname`, `couple_lastname`, `couple_phone`, `couple_attached`, `scholarship`, `last_place_of_studies`, `profession`, `created_at`, `updated_at`) VALUES
+(1, 'Manuel', 'Garcia Rodriguez', 2, '1968405381604', 1, 'M', '1980-08-15', '000213', '', 0, 'Agente de seguridad', '', '', '0000-00-00 00:00:00', '', '', '', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '2018-08-01 17:56:04');
 
 -- --------------------------------------------------------
 
@@ -160,13 +168,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `department`
 --
 ALTER TABLE `department`
-  MODIFY `id_department` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_department` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id_employee` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_employee` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
