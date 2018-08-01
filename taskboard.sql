@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-07-2018 a las 04:08:16
+-- Tiempo de generación: 01-08-2018 a las 02:41:03
 -- Versión del servidor: 10.1.29-MariaDB
 -- Versión de PHP: 7.2.0
 
@@ -56,7 +56,7 @@ CREATE TABLE `employees` (
   `dni` text NOT NULL,
   `status` int(11) NOT NULL,
   `gender` text NOT NULL,
-  `age` int(3) NOT NULL,
+  `birth_date` date NOT NULL,
   `insurance_number` text NOT NULL,
   `attached` text NOT NULL,
   `tbl_employees_id_company` int(11) NOT NULL,
@@ -64,8 +64,37 @@ CREATE TABLE `employees` (
   `file_number` text NOT NULL,
   `picture` text NOT NULL,
   `hiring_at` datetime NOT NULL,
+  `civil_status` text NOT NULL,
+  `nationality` text NOT NULL,
+  `place_birth` text NOT NULL,
+  `place_create_dni` text NOT NULL,
+  `height_cms` int(11) NOT NULL,
+  `blood_type` text NOT NULL,
+  `address` text NOT NULL,
+  `state` text NOT NULL,
+  `cellphone` text NOT NULL,
+  `phone` text NOT NULL,
+  `email` text NOT NULL,
+  `emergency_contact_name` text NOT NULL,
+  `emergency_contact_phone` text NOT NULL,
+  `emergency_contact_relationship` text NOT NULL,
+  `father_firstname` text NOT NULL,
+  `father_lastname` text NOT NULL,
+  `father_phone` text NOT NULL,
+  `father_attached` text NOT NULL,
+  `mother_firstname` text NOT NULL,
+  `mother_lastname` text NOT NULL,
+  `mother_phone` text NOT NULL,
+  `mother_attached` text NOT NULL,
+  `couple_firstname` text NOT NULL,
+  `couple_lastname` text NOT NULL,
+  `couple_phone` text NOT NULL,
+  `couple_attached` text NOT NULL,
+  `scholarship` text NOT NULL,
+  `last_place_of_studies` text NOT NULL,
+  `profession` text NOT NULL,
   `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -96,7 +125,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `firstname`, `lastname`, `user`, `password`, `email`, `picture`, `rol`, `attempt`, `security_question`, `security_answer`, `tbl_users_id_department`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin', 'admin', 'root', 'arielsalvadormejia@gmail.com', '', 0, 0, 'Server', 'Ubuntu', 1, '2018-07-30 13:00:00', '0000-00-00 00:00:00');
+(1, 'admin', 'admin', 'admin', 'Mvcpoophp7', 'arielsalvadormejia@gmail.com', '', 0, 0, 'Server', 'Ubuntu', 1, '2018-07-30 13:00:00', '0000-00-00 00:00:00');
 
 --
 -- Índices para tablas volcadas
@@ -113,7 +142,8 @@ ALTER TABLE `department`
 --
 ALTER TABLE `employees`
   ADD PRIMARY KEY (`id_employee`),
-  ADD KEY `employees_id_department` (`tbl_employees_id_department`);
+  ADD KEY `employees_id_department` (`tbl_employees_id_department`),
+  ADD KEY `tbl_employees_id_company` (`tbl_employees_id_company`);
 
 --
 -- Indices de la tabla `users`

@@ -25,19 +25,19 @@
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="active">
-                        <a href="index.html">
+                        <a href="dashboard">
                             <i class="material-icons">home</i>
                             <span>Dashboard</span>
                         </a>
                     </li>
                     <li class="">
-                        <a href="agentes">
+                        <a href="readEmployees">
                             <i class="material-icons">supervisor_account</i>
                             <span>Employees</span>
                         </a>
                     </li>
                     <li class="">
-                        <a href="seguros">
+                        <a href="readInsurance">
                             <i class="material-icons">lock</i>
                             <span>Insurance</span>
                         </a>

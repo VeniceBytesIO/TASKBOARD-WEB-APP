@@ -9,7 +9,9 @@ class RouterModel
 			$enlace == "securityQuestion"||
 			$enlace == "resetPassword"||
 			$enlace == "forgotPassword"||
-			$enlace == "signOut") {
+			$enlace == "signOut"||
+			$enlace == "readEmployees"||
+			$enlace == "readInsurance") {
 			$url = 'views/modules/'.$enlace.'.php';
 		}else if($enlace == "index"){
 			$url = 'views/modules/login.php';
