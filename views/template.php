@@ -102,9 +102,10 @@
 
 
     <!-- Custom Js -->
+    <script src="views/js/pages/forms/basic-form-elements.js"></script>
     <script src="views/js/admin.js"></script>
     <script src="views/js/pages/index.js"></script>
-    <script src="views/js/pages/forms/basic-form-elements.js"></script>
+    
 
     <!-- Demo Js -->
     <script src="views/js/demo.js"></script>
