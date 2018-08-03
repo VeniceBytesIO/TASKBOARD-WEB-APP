@@ -38,7 +38,7 @@
     <link href="views/css/themes/all-themes.css" rel="stylesheet" />
 
     <!-- Morris Chart Css-->
-    <link href="views/plugins/morrisjs/morris.css" rel="stylesheet" />
+    <!-- <link href="views/plugins/morrisjs/morris.css" rel="stylesheet" /> -->
 
 </head>
 

@@ -21,4 +21,10 @@ $(function () {
         clearButton: true,
         date: false
     });
+
+    //datepicker created by developer because want to throw only simple date
+    $('.date').bootstrapMaterialDatePicker({ 
+        weekStart : 0, 
+        time: false 
+    });
 });
